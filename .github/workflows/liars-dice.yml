@@ -48,11 +48,7 @@ jobs:
           fi
           player=$(basename "$(echo "$new_files")" .py)
           echo "challenger=$player" >> "$GITHUB_OUTPUT"
-          if python3 -c "
-import yaml
-lb = yaml.safe_load(open('leaderboard.yaml')) or {}
-import sys; sys.exit(0 if '$player' in lb.get('players', {}) else 1)
-"; then
+          if python3 -c "import yaml, sys; lb = yaml.safe_load(open('leaderboard.yaml')) or {}; sys.exit(0 if '$player' in lb.get('players', {}) else 1)"; then
             echo "Player $player is already registered — skipping game run."
             echo "already_registered=true" >> "$GITHUB_OUTPUT"
             exit 0
