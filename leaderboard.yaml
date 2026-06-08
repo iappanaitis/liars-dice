@@ -1,5 +1,5 @@
-total_runs: 2
-last_updated: '2026-05-22T16:10:13Z'
+total_runs: 3
+last_updated: '2026-06-08T17:57:49Z'
 pending_relegation: []
 players:
   Diego:
@@ -33,4 +33,12 @@ players:
     win_pct: 2.0
     tier: PRM
     tier_since: '2026-05-22T15:47:31Z'
+    times_last_in_l1: 0
+  Finn:
+    date_added: '2026-06-08T17:57:49Z'
+    total_wins: 250
+    total_games: 250
+    win_pct: 100.0
+    tier: PRM
+    tier_since: '2026-06-08T17:57:49Z'
     times_last_in_l1: 0
