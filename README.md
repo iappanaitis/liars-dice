@@ -7,24 +7,25 @@ A Python engine for running Liar's Dice games between algorithmic players. Playe
 <!-- prettier-ignore-start -->
 <!-- leaderboard-start -->
 ### Premier
-| Player | Win% | Wins | Games |
-|--------|------|------|-------|
-| Diego | 34.7 | 468 | 1350 |
-| Zara | 34.0 | 340 | 1000 |
-| Finn | 19.1 | 239 | 1250 |
-| Bruno | 12.7 | 184 | 1450 |
+| Player | Win % in PRM | Wins in PRM | Win % Total | Total Wins | Games |
+|--------|----------------|----------------|-------------|------------|-------|
+| Diego | 31.6 | 742 | 31.6 | 742 | 2350 |
+| Zara | 29.5 | 591 | 30.5 | 915 | 2000 |
+| Sloane | 27.6 | 276 | 29.8 | 894 | 1000 |
+| Finn | 15.8 | 355 | 15.8 | 355 | 2250 |
 
 ### Championship
-| Player | Win% | Wins | Games |
-|--------|------|------|-------|
-| Eva | 27.2 | 272 | 1000 |
-| Sloane | 24.8 | 248 | 1000 |
-| Remy | 15.6 | 156 | 1000 |
-| Alice | 0.0 | 0 | 0 |
-| Cleo | 0.0 | 0 | 1000 |
+| Player | Win % in CH | Wins in CH | Win % Total | Total Wins | Games |
+|--------|----------------|----------------|-------------|------------|-------|
+| Eva | 31.4 | 629 | 31.4 | 629 | 2000 |
+| Remy | 17.1 | 342 | 17.1 | 342 | 2000 |
+| Alice | 8.5 | 85 | 12.2 | 299 | 1000 |
+| Bruno | 0.0 | 0 | 10.9 | 267 | 0 |
 
 ### Level 1
-*No players currently in Level 1.*
+| Player | Win % in L1 | Wins in L1 | Win % Total | Total Wins | Games |
+|--------|----------------|----------------|-------------|------------|-------|
+| Cleo | 0.0 | 0 | 0.3 | 7 | 0 |
 
 <!-- leaderboard-end -->
 <!-- prettier-ignore-end -->

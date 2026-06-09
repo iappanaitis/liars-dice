@@ -1,5 +1,5 @@
-total_runs: 5
-last_updated: '2026-06-09T20:15:08Z'
+total_runs: 7
+last_updated: '2026-06-09T20:40:28Z'
 players:
   Alice:
     display_name: Alice
@@ -13,24 +13,28 @@ players:
         wins: 214
         games: 1450
         win_pct: 14.8
+      CH:
+        wins: 85
+        games: 1000
+        win_pct: 8.5
   Bruno:
     display_name: Bruno
     github_username: ''
     date_added: '2026-05-22T15:47:31Z'
-    tier: PRM
-    tier_since: '2026-05-22T15:47:31Z'
+    tier: CH
+    tier_since: '2026-06-09T20:40:28Z'
     times_inactive: 0
     tier_stats:
       PRM:
-        wins: 184
-        games: 1450
-        win_pct: 12.7
+        wins: 267
+        games: 2450
+        win_pct: 10.9
   Cleo:
     display_name: Cleo
     github_username: ''
     date_added: '2026-05-22T15:47:31Z'
-    tier: CH
-    tier_since: '2026-06-08T20:41:19Z'
+    tier: L1
+    tier_since: '2026-06-09T20:38:20Z'
     times_inactive: 0
     tier_stats:
       PRM:
@@ -38,9 +42,9 @@ players:
         games: 450
         win_pct: 1.1
       CH:
-        wins: 0
-        games: 1000
-        win_pct: 0.0
+        wins: 2
+        games: 2000
+        win_pct: 0.1
   Diego:
     display_name: Diego
     github_username: ''
@@ -50,9 +54,9 @@ players:
     times_inactive: 0
     tier_stats:
       PRM:
-        wins: 468
-        games: 1350
-        win_pct: 34.7
+        wins: 742
+        games: 2350
+        win_pct: 31.6
   Finn:
     display_name: Finn
     github_username: after2400
@@ -62,9 +66,9 @@ players:
     times_inactive: 0
     tier_stats:
       PRM:
-        wins: 239
-        games: 1250
-        win_pct: 19.1
+        wins: 355
+        games: 2250
+        win_pct: 15.8
   Eva:
     display_name: Eva
     github_username: after2400
@@ -74,21 +78,25 @@ players:
     times_inactive: 0
     tier_stats:
       CH:
-        wins: 272
-        games: 1000
-        win_pct: 27.2
+        wins: 629
+        games: 2000
+        win_pct: 31.4
   Sloane:
     display_name: Sloane
     github_username: after2400
     date_added: '2026-06-09T20:12:00Z'
-    tier: CH
-    tier_since: '2026-06-09T20:12:00Z'
+    tier: PRM
+    tier_since: '2026-06-09T20:38:20Z'
     times_inactive: 0
     tier_stats:
       CH:
-        wins: 248
+        wins: 618
+        games: 2000
+        win_pct: 30.9
+      PRM:
+        wins: 276
         games: 1000
-        win_pct: 24.8
+        win_pct: 27.6
   Zara:
     display_name: Zara
     github_username: after2400
@@ -102,9 +110,9 @@ players:
         games: 1000
         win_pct: 32.4
       PRM:
-        wins: 340
-        games: 1000
-        win_pct: 34.0
+        wins: 591
+        games: 2000
+        win_pct: 29.5
   Remy:
     display_name: Remy
     github_username: after2400
@@ -114,6 +122,6 @@ players:
     times_inactive: 0
     tier_stats:
       CH:
-        wins: 156
-        games: 1000
-        win_pct: 15.6
+        wins: 342
+        games: 2000
+        win_pct: 17.1
