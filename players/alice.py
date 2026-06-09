@@ -1,21 +1,26 @@
-from game.components.bets import Bet
-
 import logging
+
+from game.components.bets import Bet
 
 logger = logging.getLogger(__name__)
 
-class Player:
+
+class Alice:
     """
     Balanced strategy. Uses hand to anchor bids and calls liar when the
     running bet exceeds ~1.25x the statistically expected count.
     """
 
-    def __init__(self):
-        self.name = "Alice"
+    name = "Alice"
 
-    def algo(self, hand: list, prior_bet: Bet | None, total_dice: int,
-             bet_history: list[dict], outcomes: list[dict]) -> Bet | None:
-
+    def algo(
+        self,
+        hand: list,
+        prior_bet: Bet | None,
+        total_dice: int,
+        bet_history: list[dict],
+        outcomes: list[dict],
+    ) -> Bet | None:
         # Expected count of any non-1 face across all dice (1s are wild, so ~1/3 chance per die)
         expected = total_dice / 3
 

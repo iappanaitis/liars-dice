@@ -3,7 +3,7 @@ from math import comb
 from game.components.bets import Bet
 
 
-class Player:
+class Diego:
     """
     Probability-driven strategy. Computes the exact binomial probability that
     the current bet holds given own hand, then calls liar when that probability
@@ -13,8 +13,7 @@ class Player:
 
     CALL_THRESHOLD = 0.30  # call liar when P(bet holds) < 30%
 
-    def __init__(self):
-        self.name = "Diego"
+    name = "Diego"
 
     def _prob_bet_holds(self, hand: list, face: int, quantity: int, total_dice: int) -> float:
         """Probability that at least `quantity` dice show `face` across all dice.
@@ -33,10 +32,18 @@ class Player:
             return 0.0
 
         # P(X >= need) where X ~ Binomial(unseen, p)
-        return sum(comb(unseen, k) * (p ** k) * ((1 - p) ** (unseen - k)) for k in range(need, unseen + 1))
+        return sum(
+            comb(unseen, k) * (p**k) * ((1 - p) ** (unseen - k)) for k in range(need, unseen + 1)
+        )
 
-    def algo(self, hand: list, prior_bet: Bet | None, total_dice: int,
-             bet_history: list[dict], outcomes: list[dict]) -> Bet | None:
+    def algo(
+        self,
+        hand: list,
+        prior_bet: Bet | None,
+        total_dice: int,
+        bet_history: list[dict],
+        outcomes: list[dict],
+    ) -> Bet | None:
 
         if prior_bet is None:
             # Open on the face with the highest expected total count

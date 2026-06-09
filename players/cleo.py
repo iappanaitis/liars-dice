@@ -3,7 +3,7 @@ import random
 from game.components.bets import Bet
 
 
-class Player:
+class Cleo:
     """
     Mood-driven strategy. Each turn randomly adopts an aggressive or cautious
     stance, then makes logically grounded decisions within that frame.
@@ -12,8 +12,7 @@ class Player:
     Cautious: bids conservatively, calls liar at the first sign of excess.
     """
 
-    def __init__(self):
-        self.name = "Cleo"
+    name = "Cleo"
 
     def _estimate(self, hand: list, face: int, total_dice: int) -> float:
         """Expected total count of `face` across all dice, using own hand + probability."""
@@ -23,8 +22,14 @@ class Player:
         expected_others = unseen * (2 / 6 if face != 1 else 1 / 6)
         return own + expected_others
 
-    def algo(self, hand: list, prior_bet: Bet | None, total_dice: int,
-             bet_history: list[dict], outcomes: list[dict]) -> Bet | None:
+    def algo(
+        self,
+        hand: list,
+        prior_bet: Bet | None,
+        total_dice: int,
+        bet_history: list[dict],
+        outcomes: list[dict],
+    ) -> Bet | None:
         aggressive = random.random() < 0.5
 
         if prior_bet is None:
