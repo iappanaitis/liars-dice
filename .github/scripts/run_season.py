@@ -213,15 +213,18 @@ _TIER_LABEL = {"PRM": "Premier", "CH": "Championship", "L1": "Level 1", "inactiv
 
 def _standings_table(tier_players: list[tuple[str, dict]], tier: str) -> list[str]:
     lines = [
-        "| Player | Win% | Wins | All Wins | Games |",
-        "|--------|------|------|----------|-------|",
+        f"| Player | Win % in {tier} | Wins in {tier} | Win % Total | Total Wins | Games |",
+        "|--------|----------------|----------------|-------------|------------|-------|",
     ]
     for name, p in tier_players:
         display = p.get("display_name", name)
         ts = p.get("tier_stats", {}).get(tier, {})
-        all_wins = sum(t.get("wins", 0) for t in p.get("tier_stats", {}).values())
+        all_stats = p.get("tier_stats", {}).values()
+        total_wins = sum(t.get("wins", 0) for t in all_stats)
+        total_games = sum(t.get("games", 0) for t in p.get("tier_stats", {}).values())
+        total_win_pct = round(total_wins / total_games * 100, 1) if total_games else 0.0
         lines.append(
-            f"| {display} | {ts.get('win_pct', 0.0)} | {ts.get('wins', 0)} | {all_wins} | {ts.get('games', 0)} |"
+            f"| {display} | {ts.get('win_pct', 0.0)} | {ts.get('wins', 0)} | {total_win_pct} | {total_wins} | {ts.get('games', 0)} |"
         )
     return lines
 
