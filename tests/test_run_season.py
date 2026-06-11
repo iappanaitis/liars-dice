@@ -198,11 +198,13 @@ def test_runs_inactive_tier_separately(tmp_path):
 # ---------------------------------------------------------------------------
 
 
-def _load_run_season():
+def _load_run_season(module_name="run_season"):
     """Import run_season.py as a module (main() is guarded, so this is side-effect free)."""
+    # Distinct module_name lets a test load an isolated second copy of the
+    # script (same name would collide in sys.modules and share monkeypatches).
     import importlib.util
 
-    spec = importlib.util.spec_from_file_location("run_season", SCRIPT)
+    spec = importlib.util.spec_from_file_location(module_name, SCRIPT)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -305,3 +307,69 @@ def test_standings_games_column_shows_total_games_not_current_tier():
     assert data_row.endswith("| 29.8 | 1490 | 5000 |")
     # Must NOT show the current-tier (PRM) games of 2000 in the totals Games column.
     assert "| 1490 | 2000 |" not in data_row
+
+
+# ---------------------------------------------------------------------------
+# Task 3: end-to-end run_season with settlement
+# ---------------------------------------------------------------------------
+
+
+def _player(name, tier):
+    return {
+        "display_name": name,
+        "github_username": "",
+        "date_added": "2026-01-01T00:00:00Z",
+        "tier": tier,
+        "tier_since": "2026-01-01T00:00:00Z",
+        "times_inactive": 0,
+        "tier_stats": {},
+    }
+
+
+def test_run_season_rebalances_in_one_run(tmp_path, monkeypatch):
+    """Full bottom-up promotion + top-down settlement produces a balanced ladder."""
+    run_season_mod = _load_run_season("run_season_e2e")
+
+    players = {
+        "Diego": _player("Diego", "PRM"),
+        "Eva": _player("Eva", "PRM"),
+        "Sloane": _player("Sloane", "PRM"),
+        "Zara": _player("Zara", "PRM"),
+        "Alice": _player("Alice", "CH"),
+        "Bruno": _player("Bruno", "CH"),
+        "Finn": _player("Finn", "CH"),
+        "Remy": _player("Remy", "CH"),
+        "Cleo": _player("Cleo", "L1"),
+        "Pyro": _player("Pyro", "L1"),
+        "Topper": _player("Topper", "L1"),
+    }
+    lb_path = str(tmp_path / "leaderboard.yaml")
+    (tmp_path / "leaderboard.yaml").write_text(
+        yaml.dump({"total_runs": 0, "last_updated": "x", "players": players})
+    )
+
+    # Canned per-tier win counts. Cleo wins L1 (promoted), flops in CH;
+    # Remy wins CH (promoted), flops in PRM.
+    canned = {
+        "L1": {"Cleo": 471, "Topper": 444, "Pyro": 85},
+        "CH": {"Remy": 337, "Finn": 312, "Alice": 194, "Bruno": 153, "Cleo": 4},
+        "PRM": {"Sloane": 240, "Eva": 235, "Zara": 217, "Diego": 202, "Remy": 106},
+    }
+    monkeypatch.setattr(run_season_mod, "_run_tier", lambda tier, n, t, p: canned.get(tier, {}))
+
+    run_season_mod.run_season(
+        n_games=1000,
+        top_n=4,
+        lb_path=lb_path,
+        summary_file=str(tmp_path / "summary.md"),
+        readme_path=str(tmp_path / "README.md"),  # no markers → README update is a no-op
+    )
+
+    result = yaml.safe_load(Path(lb_path).read_text())["players"]
+
+    def by_tier(t):
+        return {n for n, p in result.items() if p["tier"] == t}
+
+    assert by_tier("PRM") == {"Diego", "Eva", "Sloane", "Zara"}
+    assert by_tier("CH") == {"Alice", "Bruno", "Finn", "Remy"}  # Remy parachuted back
+    assert by_tier("L1") == {"Pyro", "Topper", "Cleo"}  # Cleo bounced back
