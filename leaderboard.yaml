@@ -1,5 +1,5 @@
 total_runs: 9
-last_updated: '2026-06-11T03:29:08Z'
+last_updated: '2026-06-11T03:32:43Z'
 players:
   Alice:
     display_name: Alice
@@ -139,5 +139,13 @@ players:
     date_added: '2026-06-11T03:29:08Z'
     tier: L1
     tier_since: '2026-06-11T03:29:08Z'
+    times_inactive: 0
+    tier_stats: {}
+  Pyro:
+    display_name: "Liar\xB2, Pants on Fire"
+    github_username: after2400
+    date_added: '2026-06-11T03:32:43Z'
+    tier: L1
+    tier_since: '2026-06-11T03:32:43Z'
     times_inactive: 0
     tier_stats: {}
