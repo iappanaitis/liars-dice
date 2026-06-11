@@ -542,3 +542,146 @@ def test_apply_season_results_no_relegation_when_tier_below_capacity(tmp_path):
 
     assert result["players"]["P1"]["tier"] == "CH"  # top promotes
     assert result["players"]["P2"]["tier"] == "L1"  # stays — L1 is below capacity, no relegation
+
+
+# --- build_display_names ---
+
+
+def test_build_display_names_unique_names_unsuffixed():
+    from game.components.leaderboard import build_display_names
+
+    players = {
+        "Alice": {"display_name": "Alice", "github_username": "x"},
+        "Bruno": {"display_name": "Bruno", "github_username": "y"},
+    }
+    assert build_display_names(players) == {"Alice": "Alice", "Bruno": "Bruno"}
+
+
+def test_build_display_names_distinct_usernames_get_suffix():
+    from game.components.leaderboard import build_display_names
+
+    players = {
+        "TopperA": {"display_name": "Topper", "github_username": "after2400"},
+        "TopperB": {"display_name": "Topper", "github_username": "jschmoe"},
+    }
+    assert build_display_names(players) == {
+        "TopperA": "Topper (after2400)",
+        "TopperB": "Topper (jschmoe)",
+    }
+
+
+def test_build_display_names_empty_username_falls_back_to_class():
+    from game.components.leaderboard import build_display_names
+
+    players = {
+        "TopperA": {"display_name": "Topper", "github_username": "after2400"},
+        "TopperB": {"display_name": "Topper", "github_username": ""},
+    }
+    assert build_display_names(players) == {
+        "TopperA": "Topper (after2400)",
+        "TopperB": "Topper (TopperB)",
+    }
+
+
+def test_build_display_names_both_empty_use_class():
+    from game.components.leaderboard import build_display_names
+
+    players = {
+        "TopperA": {"display_name": "Topper", "github_username": ""},
+        "TopperB": {"display_name": "Topper", "github_username": ""},
+    }
+    assert build_display_names(players) == {
+        "TopperA": "Topper (TopperA)",
+        "TopperB": "Topper (TopperB)",
+    }
+
+
+def test_build_display_names_same_author_uses_class():
+    from game.components.leaderboard import build_display_names
+
+    players = {
+        "TopperA": {"display_name": "Topper", "github_username": "after2400"},
+        "TopperB": {"display_name": "Topper", "github_username": "after2400"},
+    }
+    assert build_display_names(players) == {
+        "TopperA": "Topper (TopperA)",
+        "TopperB": "Topper (TopperB)",
+    }
+
+
+def test_build_display_names_mixed_collision_and_unique():
+    from game.components.leaderboard import build_display_names
+
+    players = {
+        "TopperA": {"display_name": "Topper", "github_username": "after2400"},
+        "TopperB": {"display_name": "Topper", "github_username": "jschmoe"},
+        "Alice": {"display_name": "Alice", "github_username": ""},
+    }
+    result = build_display_names(players)
+    assert result["Alice"] == "Alice"
+    assert result["TopperA"] == "Topper (after2400)"
+    assert result["TopperB"] == "Topper (jschmoe)"
+
+
+def test_build_display_names_missing_display_name_uses_class():
+    from game.components.leaderboard import build_display_names
+
+    players = {"Solo": {"github_username": "x"}}
+    assert build_display_names(players) == {"Solo": "Solo"}
+
+
+def test_apply_season_results_movement_uses_disambiguated_name(tmp_path):
+    import yaml as _yaml
+
+    from game.components.leaderboard import apply_season_results
+
+    path = str(tmp_path / "lb.yaml")
+    data = {
+        "total_runs": 0,
+        "players": {
+            "TopperA": {
+                "display_name": "Topper",
+                "github_username": "alice",
+                "tier": "CH",
+                "tier_since": "2026-01-01T00:00:00Z",
+                "tier_stats": {},
+            },
+            "TopperB": {
+                "display_name": "Topper",
+                "github_username": "bob",
+                "tier": "CH",
+                "tier_since": "2026-01-01T00:00:00Z",
+                "tier_stats": {},
+            },
+        },
+    }
+    (tmp_path / "lb.yaml").write_text(_yaml.dump(data))
+
+    movements = apply_season_results(
+        {"TopperA": 10, "TopperB": 2}, n_games=10, tier="CH", top_n=4, path=path
+    )
+
+    # TopperA wins most → promoted; message uses the disambiguated name.
+    assert "Promoted: Topper (alice) → PRM" in movements
+
+
+def test_build_display_names_no_op_on_current_leaderboard():
+    """Every current display name is unique, so the helper adds no suffixes.
+
+    This test will (correctly) start failing if a duplicate display_name is ever
+    registered — that is expected, and means the helper should now be adding
+    disambiguating suffixes.
+    """
+    from pathlib import Path
+
+    import yaml as _yaml
+
+    from game.components.leaderboard import build_display_names
+
+    repo_root = Path(__file__).parent.parent
+    data = _yaml.safe_load((repo_root / "leaderboard.yaml").read_text())
+    players = data["players"]
+
+    result = build_display_names(players)
+    for cn, p in players.items():
+        assert result[cn] == p.get("display_name", cn)  # bare, no suffix added
