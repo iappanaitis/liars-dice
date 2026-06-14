@@ -1,6 +1,21 @@
 # CHANGELOG
 
 
+## v1.0.1 (2026-06-14)
+
+### Bug Fixes
+
+- Lint on PRs only; release workflow_dispatch; platform-neutral pre-commit
+  ([#30](https://github.com/after2400/liars-dice/pull/30),
+  [`6c4b02e`](https://github.com/after2400/liars-dice/commit/6c4b02ee71edb49b0c97743f13f0a523f75c48af))
+
+### Documentation
+
+- CONTRIBUTING.md, RULES.md, and PSR double-trigger fix
+  ([#29](https://github.com/after2400/liars-dice/pull/29),
+  [`64c125e`](https://github.com/after2400/liars-dice/commit/64c125e0f7534626ae1543262c07f186780c9f9e))
+
+
 ## v1.0.0 (2026-06-14)
 
 ### Chores
