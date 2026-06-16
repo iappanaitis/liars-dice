@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v1.4.2 (2026-06-16)
+
+### Bug Fixes
+
+- **workflows**: Run daily and pick up new players since last run
+  ([#49](https://github.com/after2400/liars-dice/pull/49),
+  [`229d856`](https://github.com/after2400/liars-dice/commit/229d856518234895f8a97546acf2532af0594a8b))
+
+
 ## v1.4.1 (2026-06-16)
 
 ### Bug Fixes
