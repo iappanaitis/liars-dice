@@ -10,10 +10,15 @@ develop:
     pre-commit install --hook-type commit-msg
     pre-commit install
 
-# Run the full test suite
+# Run player tests (local sandbox — player_tests/ is gitignored)
 [group('quality')]
 pytest:
-    uv run pytest -v
+    uv run pytest player_tests/ -v; s=$?; [ $s -eq 5 ] && exit 0 || exit $s
+
+# Run engine and integration tests (admin/engine PRs only)
+[group('quality')]
+pytest-all:
+    uv run pytest tests/ examples/tests/ -v
 
 # Lint and format check
 [group('quality')]
