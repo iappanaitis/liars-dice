@@ -15,28 +15,35 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check for non-player files
+      - name: Check for file scope violations
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git fetch origin main
-          changed=$(git diff --name-only origin/main HEAD | grep -v '^players/' || true)
+          all_changed=$(git diff --name-only origin/main HEAD)
+          player_files=$(echo "$all_changed" | grep '^players/' || true)
+          non_player_files=$(echo "$all_changed" | grep -v '^players/' || true)
 
-          if [ -z "$changed" ]; then
-            echo "All changed files are in players/ — OK"
+          # Rule 1: No mixed PRs — players/* and non-players/* cannot coexist in one PR
+          if [ -n "$player_files" ] && [ -n "$non_player_files" ]; then
+            gh pr comment ${{ github.event.pull_request.number }} \
+              --body "❌ This PR mixes \`players/\` files with files outside \`players/\`. These must be submitted as separate PRs. Player files: $(echo "$player_files" | tr '\n' ' ') | Other files: $(echo "$non_player_files" | tr '\n' ' ')"
+            exit 1
+          fi
+
+          # Rule 2: Only admins may submit non-players/* files
+          if [ -n "$non_player_files" ]; then
+            is_admin=$(gh api repos/${{ github.repository }}/collaborators/${{ github.actor }}/permission \
+              --jq '.permission == "admin"' 2>/dev/null || echo "false")
+
+            if [ "$is_admin" != "true" ]; then
+              gh pr comment ${{ github.event.pull_request.number }} \
+                --body "❌ This PR modifies files outside \`players/\`. Only admins may change other parts of the repository. Files: $(echo "$non_player_files" | tr '\n' ' ')"
+              exit 1
+            fi
+
+            echo "Actor ${{ github.actor }} is admin with non-player files only — OK"
             exit 0
           fi
 
-          echo "Non-player files changed: $changed"
-
-          is_admin=$(gh api repos/${{ github.repository }}/collaborators/${{ github.actor }}/permission \
-            --jq '.permission == "admin"' 2>/dev/null || echo "false")
-
-          if [ "$is_admin" = "true" ]; then
-            echo "Actor ${{ github.actor }} is admin — allowing"
-            exit 0
-          fi
-
-          gh pr comment ${{ github.event.pull_request.number }} \
-            --body "❌ This PR modifies files outside \`players/\`. Only admins may change other parts of the repository. Files: $(echo "$changed" | tr '\n' ' ')"
-          exit 1
+          echo "All changed files are in players/ — OK"
