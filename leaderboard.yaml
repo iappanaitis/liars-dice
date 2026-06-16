@@ -1,5 +1,5 @@
 total_runs: 15
-last_updated: '2026-06-15T15:12:10Z'
+last_updated: '2026-06-16T04:17:48Z'
 current_season_issue: 4
 players:
   Alice:
@@ -170,3 +170,11 @@ players:
         wins: 182
         games: 2000
         win_pct: 9.1
+  Nuke:
+    display_name: Nuke LaLoosh
+    github_username: after2400
+    date_added: '2026-06-16T04:17:48Z'
+    tier: L1
+    tier_since: '2026-06-16T04:17:48Z'
+    times_inactive: 0
+    tier_stats: {}
