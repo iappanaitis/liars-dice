@@ -1,6 +1,42 @@
 # CHANGELOG
 
 
+## v1.4.0 (2026-06-16)
+
+### Chores
+
+- **config**: Add player_tests/ sandbox and split pytest recipes
+  ([#38](https://github.com/after2400/liars-dice/pull/38),
+  [`626da7a`](https://github.com/after2400/liars-dice/commit/626da7a2b38de8c4b2f6a36eb1f1adad4134d3c5))
+
+- **config**: Add pythonpath to pytest so player_tests can import game modules
+  ([`bf02d37`](https://github.com/after2400/liars-dice/commit/bf02d37c145b366da333f557ea34ccb759b1ea53))
+
+- **config**: Set worktree baseRef to fresh
+  ([`7a08076`](https://github.com/after2400/liars-dice/commit/7a0807632a524fc96b0b24fc8988ab0074e968a4))
+
+### Continuous Integration
+
+- Skip auto-merge for admin player PRs ([#40](https://github.com/after2400/liars-dice/pull/40),
+  [`c4fda4d`](https://github.com/after2400/liars-dice/commit/c4fda4de6ca9abf3e90b5fb8ec9fc355c5841f60))
+
+- Use GITHUB_TOKEN for admin PR comment in register job
+  ([#42](https://github.com/after2400/liars-dice/pull/42),
+  [`ce79351`](https://github.com/after2400/liars-dice/commit/ce79351e6a963e9bc8eeaac99c894e37a05a366c))
+
+### Documentation
+
+- Simulation procedure, CONTRIBUTING.md review and fixes
+  ([#43](https://github.com/after2400/liars-dice/pull/43),
+  [`b00c7a3`](https://github.com/after2400/liars-dice/commit/b00c7a3367302ebc7ee61ffea5645ef25c1fac6b))
+
+### Features
+
+- Deduplicate player display names in-game when they collide
+  ([#45](https://github.com/after2400/liars-dice/pull/45),
+  [`0cd15e2`](https://github.com/after2400/liars-dice/commit/0cd15e25dba43c44fabb2a31733c2aaf1a344576))
+
+
 ## v1.3.0 (2026-06-16)
 
 ### Continuous Integration
