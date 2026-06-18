@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v1.6.1 (2026-06-18)
+
+### Bug Fixes
+
+- **config**: Update simulate-tournament to use game.season.utils
+  ([#72](https://github.com/after2400/liars-dice/pull/72),
+  [`d218a84`](https://github.com/after2400/liars-dice/commit/d218a8498294f7748dc3bdd9d35ac40b19a96d3a))
+
+
 ## v1.6.0 (2026-06-18)
 
 ### Features
