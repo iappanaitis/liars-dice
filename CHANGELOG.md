@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v1.6.0 (2026-06-18)
+
+### Features
+
+- **game**: Split L1 into pools when >8 players for season runs
+  ([#70](https://github.com/after2400/liars-dice/pull/70),
+  [`9e3e982`](https://github.com/after2400/liars-dice/commit/9e3e982153f58831f3ee19c5481ce3067c71969b))
+
+
 ## v1.5.1 (2026-06-18)
 
 ### Bug Fixes
