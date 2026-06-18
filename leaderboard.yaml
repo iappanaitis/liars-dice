@@ -1,5 +1,5 @@
 total_runs: 36
-last_updated: '2026-06-18T12:21:55Z'
+last_updated: '2026-06-18T23:29:14Z'
 current_season_issue: 4
 players:
   Alice:
@@ -278,3 +278,11 @@ players:
         wins: 180
         games: 1000
         win_pct: 18.0
+  PeterGriffin:
+    display_name: Peter Griffin
+    github_username: DNiev
+    date_added: '2026-06-18T23:29:14Z'
+    tier: PRM
+    tier_since: '2026-06-18T23:29:14Z'
+    times_inactive: 0
+    tier_stats: {}
