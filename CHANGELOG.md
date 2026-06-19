@@ -1,6 +1,21 @@
 # CHANGELOG
 
 
+## v1.7.0 (2026-06-19)
+
+### Continuous Integration
+
+- Sync docs/wiki/ to GitHub wiki on merge (#79)
+  ([#80](https://github.com/after2400/liars-dice/pull/80),
+  [`1f07f57`](https://github.com/after2400/liars-dice/commit/1f07f57bc1695e619ab6fcbdd2316fb1c66298ae))
+
+### Features
+
+- **game**: Add round_players opt-in kwarg to algo() (#75)
+  ([#78](https://github.com/after2400/liars-dice/pull/78),
+  [`6bb7d1d`](https://github.com/after2400/liars-dice/commit/6bb7d1de71b2638009ea9642c9fc7ee49bdd66be))
+
+
 ## v1.6.2 (2026-06-18)
 
 ### Bug Fixes
