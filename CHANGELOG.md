@@ -1,6 +1,21 @@
 # CHANGELOG
 
 
+## v1.8.0 (2026-06-19)
+
+### Documentation
+
+- Add just register-player recipe and document local registration
+  ([#84](https://github.com/after2400/liars-dice/pull/84),
+  [`cbdb237`](https://github.com/after2400/liars-dice/commit/cbdb237ad6c41d037453652c441dd3e628ec58c7))
+
+### Features
+
+- **scripts**: Add just simulate-quarter recipe and optional path to just clean
+  ([#87](https://github.com/after2400/liars-dice/pull/87),
+  [`743c689`](https://github.com/after2400/liars-dice/commit/743c6895689f5d1f7e1dfb0f81263ae4bc175340))
+
+
 ## v1.7.0 (2026-06-19)
 
 ### Continuous Integration
