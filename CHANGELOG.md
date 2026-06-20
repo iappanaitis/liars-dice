@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v1.11.0 (2026-06-20)
+
+### Features
+
+- **scripts**: Scan v1 players in weekly season summary
+  ([#107](https://github.com/after2400/liars-dice/pull/107),
+  [`d252f5f`](https://github.com/after2400/liars-dice/commit/d252f5fb1a5a7bafe53532278bc2a2631f4520f0))
+
+
 ## v1.10.0 (2026-06-20)
 
 ### Features
