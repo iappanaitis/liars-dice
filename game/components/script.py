@@ -3,8 +3,10 @@ import logging
 import random
 import secrets
 import traceback
+import types
 
 from game.components.bets import Bet, bet_grader, bet_validator
+from game.components.context import GameContext, _ReadOnlySequence
 from game.components.utils import FACES
 
 logger = logging.getLogger(__name__)
@@ -40,6 +42,20 @@ def game_orchestrator(
     _wants_stats = {p: "stats" in _sigs[p] for p in players}
     _wants_tier = {p: "tier" in _sigs[p] for p in players}
     _wants_round_players = {p: "round_players" in _sigs[p] for p in players}
+
+    def _positional_count(params: dict) -> int:
+        return sum(
+            1
+            for name, p in params.items()
+            if name != "self"
+            and p.kind
+            in (
+                inspect.Parameter.POSITIONAL_ONLY,
+                inspect.Parameter.POSITIONAL_OR_KEYWORD,
+            )
+        )
+
+    _is_v2 = {p: _positional_count(_sigs[p]) == 1 for p in players}
     logger.info("=== New Game ===")
     rng.shuffle(players)
     logger.info(f"Players: {', '.join(p.name for p in players)}")
@@ -59,6 +75,10 @@ def game_orchestrator(
     if outcomes is None:
         outcomes = []
     completed_outcomes = outcomes  # alias — appended to in-place below
+
+    # Read-only wrappers created once per game, shared across all v2 player turns.
+    bet_history_view = _ReadOnlySequence(bet_history)
+    outcomes_view = _ReadOnlySequence(completed_outcomes)
 
     round_num = 0
 
@@ -93,26 +113,39 @@ def game_orchestrator(
             player = players[player_idx]
 
             try:
-                kwargs: dict = {}
-                if _wants_stats[player]:
-                    kwargs["stats"] = stats
-                if _wants_tier[player]:
-                    kwargs["tier"] = tier
-                if _wants_round_players[player]:
-                    kwargs["round_players"] = list(round_players_order)
                 safe_bet = (
                     Bet(current_bet.quantity, current_bet.face, current_bet.player)
                     if current_bet is not None
                     else None
                 )
-                action = player.algo(
-                    list(hands[player_idx]),
-                    safe_bet,
-                    total_dice,
-                    list(bet_history),
-                    list(completed_outcomes),
-                    **kwargs,
-                )
+                if _is_v2[player]:
+                    ctx = GameContext(
+                        hand=list(hands[player_idx]),
+                        prior_bet=safe_bet,
+                        total_dice=total_dice,
+                        bet_history=bet_history_view,
+                        outcomes=outcomes_view,
+                        stats=stats,
+                        tier=tier,
+                        round_players=round_players_order,
+                    )
+                    action = player.algo(ctx)
+                else:
+                    kwargs: dict = {}
+                    if _wants_stats[player]:
+                        kwargs["stats"] = stats
+                    if _wants_tier[player]:
+                        kwargs["tier"] = tier
+                    if _wants_round_players[player]:
+                        kwargs["round_players"] = list(round_players_order)
+                    action = player.algo(
+                        list(hands[player_idx]),
+                        safe_bet,
+                        total_dice,
+                        list(bet_history),
+                        list(completed_outcomes),
+                        **kwargs,
+                    )
             except Exception:
                 logger.error(
                     "%s raised an exception - penalised\n%s",
@@ -144,16 +177,20 @@ def game_orchestrator(
                         loser = prev_bidder
                         round_winner = player_idx
                     completed_outcomes.append(
-                        {
-                            "game": game_id,
-                            "round": round_num,
-                            "hands": {players[i].name: hands[i] for i in active_list},
-                            "final_bet": current_bet,
-                            "bidder": players[prev_bidder].name,
-                            "challenger": player.name,
-                            "bet_held": bet_held,
-                            "loser": players[loser].name,
-                        }
+                        types.MappingProxyType(
+                            {
+                                "game": game_id,
+                                "round": round_num,
+                                "hands": types.MappingProxyType(
+                                    {players[i].name: tuple(hands[i]) for i in active_list}
+                                ),
+                                "final_bet": current_bet,
+                                "bidder": players[prev_bidder].name,
+                                "challenger": player.name,
+                                "bet_held": bet_held,
+                                "loser": players[loser].name,
+                            }
+                        )
                     )
                     if stats is not None:
                         stats.update_outcome(completed_outcomes[-1])
@@ -172,13 +209,15 @@ def game_orchestrator(
                     current_bet = action
                     prev_bidder = player_idx
                     bet_history.append(
-                        {
-                            "game": game_id,
-                            "round": round_num,
-                            "player": player.name,
-                            "bet": current_bet,
-                            "dice_count": dice_counts[player_idx],
-                        }
+                        types.MappingProxyType(
+                            {
+                                "game": game_id,
+                                "round": round_num,
+                                "player": player.name,
+                                "bet": current_bet,
+                                "dice_count": dice_counts[player_idx],
+                            }
+                        )
                     )
                     if stats is not None:
                         stats.update_bet(
