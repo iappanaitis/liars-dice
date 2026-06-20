@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v1.10.0 (2026-06-20)
+
+### Features
+
+- **game**: GameContext v2 — immutable context object for algo() (#82)
+  ([#83](https://github.com/after2400/liars-dice/pull/83),
+  [`9169321`](https://github.com/after2400/liars-dice/commit/916932111231943da8ecb9e1f41c98018ede0c36))
+
+
 ## v1.9.0 (2026-06-19)
 
 ### Continuous Integration
