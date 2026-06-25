@@ -1,5 +1,5 @@
-total_runs: 66
-last_updated: '2026-06-25T03:17:47Z'
+total_runs: 69
+last_updated: '2026-06-25T03:20:24Z'
 current_season_issue: 4
 players:
   Alice:
@@ -19,8 +19,8 @@ players:
         games: 7000
         win_pct: 12.6
       L1:
-        wins: 2604
-        games: 15000
+        wins: 2781
+        games: 16000
         win_pct: 17.4
   Bruno:
     display_name: Bruno
@@ -39,9 +39,9 @@ players:
         games: 5000
         win_pct: 13.8
       L1:
-        wins: 1881
-        games: 15000
-        win_pct: 12.5
+        wins: 2011
+        games: 16000
+        win_pct: 12.6
   Cleo:
     display_name: Cleo
     github_username: zachaustin01
@@ -59,9 +59,9 @@ players:
         games: 4000
         win_pct: 0.3
       L1:
-        wins: 1480
-        games: 19000
-        win_pct: 7.8
+        wins: 1494
+        games: 20000
+        win_pct: 7.5
   Diego:
     display_name: Diego
     github_username: zachaustin01
@@ -75,15 +75,15 @@ players:
         games: 19350
         win_pct: 18.4
       CH:
-        wins: 912
-        games: 5000
-        win_pct: 18.2
+        wins: 1071
+        games: 6000
+        win_pct: 17.8
   Finn:
     display_name: Finn
     github_username: after2400
     date_added: '2026-06-08T20:41:19Z'
     tier: L1
-    tier_since: '2026-06-24T11:43:57Z'
+    tier_since: '2026-06-25T03:20:24Z'
     times_inactive: 0
     tier_stats:
       PRM:
@@ -91,12 +91,12 @@ players:
         games: 3250
         win_pct: 14.0
       CH:
-        wins: 1617
-        games: 9000
-        win_pct: 18.0
+        wins: 1695
+        games: 10000
+        win_pct: 17.0
       L1:
-        wins: 2682
-        games: 12000
+        wins: 2915
+        games: 13000
         win_pct: 22.4
   Eva:
     display_name: Eva
@@ -107,9 +107,9 @@ players:
     times_inactive: 0
     tier_stats:
       CH:
-        wins: 3987
-        games: 18000
-        win_pct: 22.1
+        wins: 4138
+        games: 19000
+        win_pct: 21.8
       PRM:
         wins: 1193
         games: 6000
@@ -118,18 +118,18 @@ players:
     display_name: Sloane
     github_username: after2400
     date_added: '2026-06-09T20:12:00Z'
-    tier: CH
-    tier_since: '2026-06-24T11:43:57Z'
+    tier: PRM
+    tier_since: '2026-06-25T03:19:13Z'
     times_inactive: 0
     tier_stats:
       CH:
-        wins: 3105
-        games: 13000
-        win_pct: 23.9
+        wins: 3283
+        games: 14000
+        win_pct: 23.4
       PRM:
-        wins: 3003
-        games: 17000
-        win_pct: 17.7
+        wins: 3103
+        games: 18000
+        win_pct: 17.2
   Zara:
     display_name: Zara
     github_username: after2400
@@ -139,9 +139,9 @@ players:
     times_inactive: 0
     tier_stats:
       CH:
-        wins: 2508
-        games: 13000
-        win_pct: 19.3
+        wins: 2667
+        games: 14000
+        win_pct: 19.1
       PRM:
         wins: 2230
         games: 10000
@@ -163,9 +163,9 @@ players:
         games: 2000
         win_pct: 10.6
       L1:
-        wins: 3021
-        games: 13000
-        win_pct: 23.2
+        wins: 3222
+        games: 14000
+        win_pct: 23.0
   Topper:
     display_name: Topper
     github_username: after2400
@@ -175,9 +175,9 @@ players:
     times_inactive: 0
     tier_stats:
       L1:
-        wins: 1858
-        games: 19000
-        win_pct: 9.8
+        wins: 1891
+        games: 20000
+        win_pct: 9.5
   Pyro:
     display_name: "Liar\xB2, Pants on Fire"
     github_username: after2400
@@ -187,9 +187,9 @@ players:
     times_inactive: 0
     tier_stats:
       L1:
-        wins: 796
-        games: 19000
-        win_pct: 4.2
+        wins: 829
+        games: 20000
+        win_pct: 4.1
   Nuke:
     display_name: Nuke LaLoosh
     github_username: after2400
@@ -207,9 +207,9 @@ players:
         games: 2000
         win_pct: 27.6
       PRM:
-        wins: 2642
-        games: 17000
-        win_pct: 15.5
+        wins: 2746
+        games: 18000
+        win_pct: 15.3
   Stewie:
     display_name: Stewie
     github_username: zachaustin01
@@ -227,9 +227,9 @@ players:
         games: 1000
         win_pct: 36.5
       PRM:
-        wins: 2991
-        games: 15000
-        win_pct: 19.9
+        wins: 3139
+        games: 16000
+        win_pct: 19.6
   Rick:
     display_name: Rick Sanchez
     github_username: zachaustin01
@@ -239,9 +239,9 @@ players:
     times_inactive: 0
     tier_stats:
       L1:
-        wins: 2600
-        games: 15000
-        win_pct: 17.3
+        wins: 2779
+        games: 16000
+        win_pct: 17.4
   HonestAbe:
     display_name: Honest Abe
     github_username: DNiev
@@ -255,9 +255,9 @@ players:
         games: 2000
         win_pct: 23.6
       CH:
-        wins: 1977
-        games: 14000
-        win_pct: 14.1
+        wins: 2084
+        games: 15000
+        win_pct: 13.9
   CalCulated:
     display_name: Cal Culatid
     github_username: DNiev
@@ -271,9 +271,9 @@ players:
         games: 3000
         win_pct: 26.5
       CH:
-        wins: 1777
-        games: 9000
-        win_pct: 19.7
+        wins: 1945
+        games: 10000
+        win_pct: 19.4
       PRM:
         wins: 768
         games: 6000
@@ -287,9 +287,9 @@ players:
     times_inactive: 0
     tier_stats:
       PRM:
-        wins: 1624
-        games: 10000
-        win_pct: 16.2
+        wins: 1770
+        games: 11000
+        win_pct: 16.1
   PeterBeter:
     display_name: Peter Beter
     github_username: DNiev
@@ -303,9 +303,9 @@ players:
         games: 1000
         win_pct: 29.1
       PRM:
-        wins: 1543
-        games: 9000
-        win_pct: 17.1
+        wins: 1699
+        games: 10000
+        win_pct: 17.0
   DeepThought:
     display_name: Deep Thought
     github_username: DNiev
@@ -315,9 +315,9 @@ players:
     times_inactive: 0
     tier_stats:
       PRM:
-        wins: 1169
-        games: 7000
-        win_pct: 16.7
+        wins: 1310
+        games: 8000
+        win_pct: 16.4
   EvilStewie:
     display_name: EvilStewie
     github_username: zachaustin01
@@ -331,14 +331,18 @@ players:
         games: 1000
         win_pct: 32.1
       PRM:
-        wins: 564
-        games: 3000
-        win_pct: 18.8
+        wins: 749
+        games: 4000
+        win_pct: 18.7
   Meg:
     display_name: Meg Griffin
     github_username: after2400
     date_added: '2026-06-25T03:17:47Z'
-    tier: PRM
-    tier_since: '2026-06-25T03:17:47Z'
+    tier: CH
+    tier_since: '2026-06-25T03:20:24Z'
     times_inactive: 0
-    tier_stats: {}
+    tier_stats:
+      PRM:
+        wins: 20
+        games: 1000
+        win_pct: 2.0
