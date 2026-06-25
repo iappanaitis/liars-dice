@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v1.12.1 (2026-06-25)
+
+### Bug Fixes
+
+- **engine**: Use display name in series results
+  ([#115](https://github.com/after2400/liars-dice/pull/115),
+  [`844b473`](https://github.com/after2400/liars-dice/commit/844b47312c61fee4ec48470d03b8b1fbdfddd004))
+
+
 ## v1.12.0 (2026-06-25)
 
 ### Features
