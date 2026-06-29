@@ -1,5 +1,5 @@
 total_runs: 84
-last_updated: '2026-06-29T13:04:24Z'
+last_updated: '2026-06-29T20:41:43Z'
 current_season_issue: 4
 players:
   Alice:
@@ -340,5 +340,13 @@ players:
     date_added: '2026-06-25T03:17:47Z'
     tier: L1
     tier_since: '2026-06-25T03:17:47Z'
+    times_inactive: 0
+    tier_stats: {}
+  Columbo:
+    display_name: Columbo
+    github_username: iappanaitis
+    date_added: '2026-06-29T20:41:43Z'
+    tier: L1
+    tier_since: '2026-06-29T20:41:43Z'
     times_inactive: 0
     tier_stats: {}
