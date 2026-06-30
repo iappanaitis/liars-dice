@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v2.3.0 (2026-06-30)
+
+### Features
+
+- **engine**: Use ctx.stats.ones_are_wild in Columbo
+  ([#133](https://github.com/after2400/liars-dice/pull/133),
+  [`e023de1`](https://github.com/after2400/liars-dice/commit/e023de1400c2a41dbe1d4ed01b324ef59ef55b38))
+
+
 ## v2.2.0 (2026-06-30)
 
 ### Features
