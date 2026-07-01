@@ -1,5 +1,5 @@
 total_runs: 96
-last_updated: '2026-07-01T12:20:04Z'
+last_updated: '2026-07-01T20:10:41Z'
 current_season_issue: 4
 players:
   Alice:
@@ -386,3 +386,11 @@ players:
         wins: 466
         games: 2000
         win_pct: 23.3
+  Oracle:
+    display_name: The Oracle
+    github_username: DNiev
+    date_added: '2026-07-01T20:10:41Z'
+    tier: L1
+    tier_since: '2026-07-01T20:10:41Z'
+    times_inactive: 0
+    tier_stats: {}
