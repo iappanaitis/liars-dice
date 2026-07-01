@@ -1,6 +1,21 @@
 # CHANGELOG
 
 
+## v2.4.1 (2026-07-01)
+
+### Bug Fixes
+
+- **workflows**: Opt in to fork PR checkout, gate uv sync on scope check
+  ([#155](https://github.com/after2400/liars-dice/pull/155),
+  [`b5044e7`](https://github.com/after2400/liars-dice/commit/b5044e74da416fd1d82270f47ac1d4a1c808bfad))
+
+### Continuous Integration
+
+- **workflows**: Fix auto-update skipping UNKNOWN-state player PRs
+  ([#145](https://github.com/after2400/liars-dice/pull/145),
+  [`4bce24f`](https://github.com/after2400/liars-dice/commit/4bce24f022763bd6132de6a0ae359145da81d208))
+
+
 ## v2.4.0 (2026-06-30)
 
 ### Continuous Integration
