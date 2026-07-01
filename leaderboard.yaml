@@ -1,5 +1,5 @@
 total_runs: 90
-last_updated: '2026-06-30T12:14:58Z'
+last_updated: '2026-07-01T07:24:06Z'
 current_season_issue: 4
 players:
   Alice:
@@ -366,3 +366,11 @@ players:
         wins: 154
         games: 2000
         win_pct: 7.7
+  Merovingian:
+    display_name: The Merovingian
+    github_username: after2400
+    date_added: '2026-07-01T07:24:06Z'
+    tier: L1
+    tier_since: '2026-07-01T07:24:06Z'
+    times_inactive: 0
+    tier_stats: {}
